@@ -21,13 +21,11 @@ CREATE TABLE role(
 
 CREATE TABLE employee(
     id INT NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(30),
-    last_name VARCHAR(30),
+    first_name VARCHAR(30) NULL,
+    last_name VARCHAR(30) NULL,
     role_id INT NULL,
     manager_id INT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (role_id) REFERENCES role (id),
-    FOREIGN KEY (manager_id) REFERENCES employee (id),
-    PRIMARY KEY(id)
-    
+    FOREIGN KEY (manager_id) REFERENCES employee (id)
 );
