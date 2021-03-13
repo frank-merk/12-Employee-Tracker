@@ -13,7 +13,7 @@ const prompts = [
             "View Roles",
            "View Employees",
            "Update an Employee Role",
-           "Exit"
+           "Quit"
         
          ]
    },

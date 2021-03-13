@@ -2,9 +2,9 @@
 
 const connection = require("./connection")
 const inquirer = require('inquirer');
-const functions = require('./Utils/functions');
-const figlet = require('figlet');
-const cTable = require('console.table');
+const functions = require('./utils/functions');
+var figlet = require('figlet');
+
 
 // do the connection to the database
 connection.connect((err) => {
@@ -20,6 +20,6 @@ function welcome() {
           return;
       }
       console.log(data)
-      begin(); 
+      functions.begin(); 
   });
 }
