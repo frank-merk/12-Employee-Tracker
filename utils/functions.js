@@ -71,7 +71,7 @@ function addEmployee() {
                 type: 'list',
                 name: 'role',
                 message: "What is the employees role?",
-                choices: ['Lead Actor', 'Lead Actress', 'Lead Hair and Makeup', 'Junior VFX Designer', 'Best Boy', 'Accountant', 'Legal Analyst']
+                choices: ['Lead Actor', 'Lead Actress', 'Lead Hair and Makeup', 'Junior VFX Designer', 'Head Caterer', 'Best Boy', 'Accountant', 'Legal Analyst']
 
             },
 
@@ -79,7 +79,7 @@ function addEmployee() {
                 type: 'list',
                 name: 'boss',
                 message: "Who is the employee's manager?",
-                choices: ['Joel Coen', 'Jon Moore', 'Dan Theman', 'none']
+                choices: ['Joel Coen', 'Rachel Theman', 'Jon Moore', 'none']
 
             },
 
@@ -89,26 +89,30 @@ function addEmployee() {
             let role = response.role;
             switch(role){
             case "Lead Actor":
-                role = 6;
-                break;
-            case "Lead Actress":
-                role = 7;
-                break;
-            case "Lead Hair and Makeup":
                 role = 2;
                 break;
-            case "Junior VFX Designer":
+            case "Lead Actress":
                 role = 3;
-                break;
+                break
             case "Best Boy":
+                role = 4;
+                break;
+            case "Lead Hair and Makeup":
                 role = 5;
                 break;
-            case "Accountant":
-                role = 11;
+            case "Junior VFX Designer":
+                role = 7;
                 break;
-            case "Legal Analyst":
+             case "Head Caterer":
+                role = 9;
+                break;
+            case "Accountant":
                 role = 10;
                 break;
+            case "Legal Analyst":
+                role = 11;
+                break;
+           
             default:
                 console.log("Good bye!");
             }
@@ -119,10 +123,10 @@ function addEmployee() {
                 
             } else if (manager == 'Joel Coen') {
                 manager = 1;
-            } else if (manager == 'Jon Moore') {
-                manager = 2;
+            } else if (manager == 'Rachel Theman') {
+                manager = 6;
             } else {
-                manager = 3;
+                manager = 8;
             }
             console.log("Creating a new employee...\n");
             //insert into SQL
@@ -131,39 +135,44 @@ function addEmployee() {
                 {
                   first_name: response.firstName,
                   last_name: response.lastName,
-                  manager: manager
+                  roles_id: role,
+                  manager_id: manager
                 },
                 function(err, res) {
                   if(err) throw err;
                 }
                 );
-                connection.query(
-                    "INSERT INTO roles SET ?",
-                    {
-                      title: role,
-                      
-                    },
-                    function(err, res) {
-                      if(err) throw err;
-                    }
-                  );
                   
-                  
-        
             begin();
         })
 }
 
 function viewDepartment() {
-
+    connection.query(
+        function (err, res) {
+            if (err) throw err;
+            console.table(res)
+            
+        })
 }
 
 function viewRoles() {
-    
+    connection.query(
+        function (err, res) {
+            if (err) throw err;
+            console.table(res)
+            
+        })
 }
 
+
 function viewEmployees() {
-    
+    connection.query(
+        function (err, res) {
+            if (err) throw err;
+            console.table(res)
+            
+        })
 }
 
 function updateEmployeeRole() {
