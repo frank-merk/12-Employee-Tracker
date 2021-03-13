@@ -1,7 +1,7 @@
 // inquirer  for questions, prompts has the pre-written intro options, connection starts/stops the app.
 const inquirer = require("inquirer");
 const prompts = require('./inquirerPrompts');
-const connection = require('../connection');
+const connection = require('./connection');
 
 // switch case to filter user for what they want to do
 function begin() {
@@ -142,7 +142,7 @@ function addEmployee() {
                   if(err) throw err;
                 }
                 );
-                  
+            connection.end();
             begin();
         })
 }
