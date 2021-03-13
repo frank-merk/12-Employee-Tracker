@@ -1,9 +1,9 @@
-// Employee needs role ID which references the *primary* ID of a role
-// make an accountant primary key = 1...then an employee with a role id of 1 is an accountant
-
+// inquirer  for questions, prompts has the pre-written intro options, connection starts/stops the app.
 const inquirer = require("inquirer");
 const prompts = require('./inquirerPrompts');
 const connection = require('../connection');
+
+// switch case to filter user for what they want to do
 function begin() {
     inquirer.prompt(prompts).then((response) =>{
         var answer = response.home
@@ -37,6 +37,7 @@ function begin() {
 }
 
 function addDepartment(){
+    
    
 }
 
@@ -69,6 +70,7 @@ function updateEmployeeRole() {
     
 }
 
+// send out all of our functions to be used in the app
 module.exports = {
     addDepartment,
     addRole,
