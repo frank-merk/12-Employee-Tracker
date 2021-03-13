@@ -1,6 +1,6 @@
 # 12-Employee-Tracker
 Employee Tracking Dashboard built with Node.js and MySQL
-![alt text](https://github.com/frank_merk/1/blob/main/pics/EmployeeTracker1.jpg?raw=true)
+![alt text](https://raw.githubusercontent.com/frank-merk/12-Employee-Tracker/main/pics/EmployeeTracker1.PNG)
 * [Video Demo](https://drive.google.com/file/d/1zDjpOvo0VRYopWzxBunAk_pdpskm2bMS/view)
 
 ## Overview
