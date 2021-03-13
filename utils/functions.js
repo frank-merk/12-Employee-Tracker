@@ -146,7 +146,13 @@ function addEmployee() {
 }
 
 function viewDepartment() {
-    
+    const createDepartmentTable = "SELECT * FROM employees_db.department";
+    connection.query(createDepartmentTable, function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        console.log("\n");
+        
+    })
 }
 
 function viewRoles() {
