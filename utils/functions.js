@@ -2,6 +2,7 @@
 const inquirer = require("inquirer");
 const prompts = require('./inquirerPrompts');
 const connection = require('../connection');
+const { listenerCount } = require("../connection");
 
 // switch case to filter user for what they want to do
 function begin() {
@@ -252,7 +253,48 @@ function viewEmployees() {
 }
 
 function updateEmployeeRole() {
-    console.log(getDepartments());
+    let employeeOptions = [];
+    let employeeSelect = `SELECT roles_id, CONCAT (first_name, " " , last_name) AS full_name FROM employee`;
+    connection.query(employeeSelect, function(err, res){
+            if (err) throw err;
+            res.forEach(employee => {
+                employeeOptions.push(employee.full_name);
+            });
+
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'employee',
+                    message: 'Select an employee to update',
+                    choices: employeeOptions
+                },
+                {
+                    type: 'input',
+                    name: 'newRole',
+                    message: 'Enter their new role',
+                }
+            ]).then(function (response) {
+                console.log("Writing new employee role to database...");
+                const employeeSplit = response.employee.split(' ');
+                connection.query(
+                    "UPDATE employee SET ? WHERE ? AND ?",
+                    [
+                        {
+                            roles_id: 13
+                        },
+                        {
+                            first_name: employeeSplit[0]
+                        },
+                        {
+                            last_name: employeeSplit[1]
+                        },
+                    ]
+                )
+            })
+        }
+    )
+    
 }
 
 // send out all of our functions to be used in the app
