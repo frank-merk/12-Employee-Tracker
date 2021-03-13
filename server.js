@@ -1,6 +1,8 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const functions = require('./Utils/functions');
+const figlet = require('figlet');
+const cTable = require('console.table');
 
 // create the connection information for the sql database
 const connection = mysql.createConnection({
