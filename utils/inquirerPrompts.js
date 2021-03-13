@@ -1,5 +1,6 @@
 const prompts = [
     {
+      type: "list",
          name: "home",
          type: "list",
          message: "What would you like to do?",
@@ -12,6 +13,7 @@ const prompts = [
             "View Roles",
            "View Employees",
            "Update an Employee Role",
+           "Exit"
         
          ]
    },
