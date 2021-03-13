@@ -42,9 +42,105 @@ function addDepartment(){
 }
 
 
-function addRole(){
+// function addRole(){
+//     return inquirer
+//     .prompt([
+//         {
+//             type: 'input',
+//             name: 'firstName',
+//             message: "Enter the employee's first name.",
 
-}
+//         },
+
+//         {
+//             type: 'input',
+//             name: 'lastName',
+//             message: "Enter the employee's last name.",
+
+//         },
+
+//         {
+//             type: 'list',
+//             name: 'role',
+//             message: "What is the employees role?",
+//             choices: ['Lead Actor', 'Lead Actress', 'Lead Hair and Makeup', 'Junior VFX Designer', 'Head Caterer', 'Best Boy', 'Accountant', 'Legal Analyst']
+
+//         },
+
+//         {
+//             type: 'list',
+//             name: 'boss',
+//             message: "Who is the employee's manager?",
+//             choices: ['Joel Coen', 'Rachel Theman', 'Jon Moore', 'none']
+
+//         },
+
+//     ]).then(function (response) {
+
+//         //change role.response to role id
+//         let role = response.role;
+//         switch(role){
+//         case "Lead Actor":
+//             role = 2;
+//             break;
+//         case "Lead Actress":
+//             role = 3;
+//             break
+//         case "Best Boy":
+//             role = 4;
+//             break;
+//         case "Lead Hair and Makeup":
+//             role = 5;
+//             break;
+//         case "Junior VFX Designer":
+//             role = 7;
+//             break;
+//          case "Head Caterer":
+//             role = 9;
+//             break;
+//         case "Accountant":
+//             role = 10;
+//             break;
+//         case "Legal Analyst":
+//             role = 11;
+//             break;
+       
+//         default:
+//             console.log("Good bye!");
+//         }
+//         // setting up manager id
+//         let manager = response.boss
+//         if (manager == 'none') {
+//             manager = null;
+            
+//         } else if (manager == 'Joel Coen') {
+//             manager = 1;
+//         } else if (manager == 'Rachel Theman') {
+//             manager = 2;
+//         } else {
+//             manager = 3;
+//         }
+//         console.log("Writing employee to Employee Tracker...\n");
+//         //insert into employee database in SQL
+//            connection.query(
+//             "INSERT INTO employee SET ?",
+//             {
+//               first_name: response.firstName,
+//               last_name: response.lastName,
+//               roles_id: role,
+//               manager_id: manager
+//             },
+//             function(err, res) {
+//               if(err) throw err;
+              
+//             }
+//         );
+//         console.log ("Success");
+//         connection.end();
+//         begin();
+//     })
+// }
+
 
 function addEmployee() {
     return inquirer
@@ -112,7 +208,7 @@ function addEmployee() {
             default:
                 console.log("Good bye!");
             }
-
+            // setting up manager id
             let manager = response.boss
             if (manager == 'none') {
                 manager = null;
@@ -120,9 +216,9 @@ function addEmployee() {
             } else if (manager == 'Joel Coen') {
                 manager = 1;
             } else if (manager == 'Rachel Theman') {
-                manager = 6;
+                manager = 2;
             } else {
-                manager = 8;
+                manager = 3;
             }
             console.log("Writing employee to Employee Tracker...\n");
             //insert into employee database in SQL
@@ -145,6 +241,7 @@ function addEmployee() {
         })
 }
 
+// print out all departments
 function viewDepartment() {
     const createDepartmentTable = "SELECT * FROM employees_db.department";
     connection.query(createDepartmentTable, function (err, res) {
@@ -156,7 +253,15 @@ function viewDepartment() {
 }
 
 function viewRoles() {
-  
+    const createRoleTable = "SELECT * FROM employees_db.roles";
+    connection.query(createRoleTable, function (err, res) {
+            if (err) throw err;
+            console.table(res)
+            console.log("\n");
+            
+        })
+        begin();
+
 }
 
 
