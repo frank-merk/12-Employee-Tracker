@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 const prompts = require('./inquirerPrompts');
 const connection = require('../connection');
 
+
 // switch case to filter user for what they want to do
 function begin() {
     inquirer.prompt(prompts).then((response) =>{
@@ -31,7 +32,7 @@ function begin() {
                 break;
             default:
                 console.log("Good bye!");
-                
+                connection.end();
         }
     })
 }
@@ -212,10 +213,10 @@ function addEmployee() {
                 }
             );
             console.log ("Success");
+            
             begin();
-            
-            
         })
+        begin();
 }
 
 // print out all departments
@@ -227,6 +228,7 @@ function viewDepartment() {
         console.log("\n");
         
     })
+    begin();
 }
 
 function viewRoles() {
