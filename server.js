@@ -1,7 +1,6 @@
 // requiring connections to our mysql database, inquirere for prompts, functions that live in their own doc, figlet for displaying the initial header, and console.table (ctable) for displaying data
 
 const connection = require("./connection")
-const inquirer = require('inquirer');
 const functions = require('./utils/functions');
 var figlet = require('figlet');
 

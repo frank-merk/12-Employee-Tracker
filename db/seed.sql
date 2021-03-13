@@ -25,10 +25,10 @@ INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Jon"
 INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Jeff", "Bridges", (SELECT id FROM roles WHERE title = "Director"), (SELECT id FROM roles WHERE title = "Lead Actor"));
 INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Julianne", "Moore", (SELECT id FROM roles WHERE title = "Director"), (SELECT id FROM roles WHERE title = "Lead Actress"));
 
-INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Lisa", "Pryzlbilski", (SELECT id FROM roles WHERE title = "Director"), (SELECT id FROM roles WHERE title = "Best Boy"));
-INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Amy", "Santiago", (SELECT id FROM roles WHERE title = "Director"), (SELECT id FROM roles WHERE title = "Lead Hair and Makeup"));
-INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Chou", "Tranh", (SELECT id FROM roles WHERE title = "Chief Editor"), (SELECT id FROM roles WHERE title = "Junior VFX Designer"));
+INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Lisa", "Pryzlbilski", (SELECT id FROM department WHERE name = "Production"), (SELECT id FROM roles WHERE title = "Best Boy"));
+INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Amy", "Santiago", (SELECT id FROM department WHERE name = "Production"), (SELECT id FROM roles WHERE title = "Lead Hair and Makeup"));
+INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Chou", "Tranh", (SELECT id FROM department WHERE name = "Post-Production"), (SELECT id FROM roles WHERE title = "Junior VFX Designer"));
 
-INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Dan", "Theman", (SELECT id FROM roles WHERE title = "Executive Producer"), (SELECT id FROM roles WHERE title = "Head Caterer"));
-INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Andy", "Bauer", (SELECT id FROM roles WHERE title = "Executive Producer"), (SELECT id FROM roles WHERE title = "Accountant"));
-INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Rick", "Steves", (SELECT id FROM roles WHERE title = "Executive Producer"), (SELECT id FROM roles WHERE title = "Legal Analyst"));
+INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Dan", "Theman", (SELECT id FROM department WHERE name = "Logistics"), (SELECT id FROM roles WHERE title = "Head Caterer"));
+INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Andy", "Bauer", (SELECT id FROM department WHERE name = "Logistics"), (SELECT id FROM roles WHERE title = "Accountant"));
+INSERT INTO employee (first_name, last_name, manager_id, roles_id) VALUES ("Rick", "Steves", (SELECT id FROM department WHERE name = "Logistics"), (SELECT id FROM roles WHERE title = "Legal Analyst"));

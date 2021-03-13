@@ -42,10 +42,6 @@ function addDepartment(){
 }
 
 
-function addDepartment(){
-
-}
-
 function addRole(){
 
 }
@@ -128,8 +124,8 @@ function addEmployee() {
             } else {
                 manager = 8;
             }
-            console.log("Creating a new employee...\n");
-            //insert into SQL
+            console.log("Writing employee to Employee Tracker...\n");
+            //insert into employee database in SQL
                connection.query(
                 "INSERT INTO employee SET ?",
                 {
@@ -140,39 +136,32 @@ function addEmployee() {
                 },
                 function(err, res) {
                   if(err) throw err;
+                  
                 }
-                );
+            );
+            console.log ("Success");
             connection.end();
             begin();
         })
 }
 
 function viewDepartment() {
-    connection.query(
-        function (err, res) {
-            if (err) throw err;
-            console.table(res)
-            
-        })
+    
 }
 
 function viewRoles() {
-    connection.query(
-        function (err, res) {
-            if (err) throw err;
-            console.table(res)
-            
-        })
+  
 }
 
 
 function viewEmployees() {
-    connection.query(
-        function (err, res) {
+    const createEmployeeTable = "SELECT emp.id as ID, CONCAT(emp.first_name, ' ', emp.last_name) as Employee, name as Department, title as Title, salary as Salary,  CONCAT(mgr.first_name, ' ', mgr.last_name) as Manager FROM employee emp LEFT JOIN roles ON roles.id = emp.roles_id LEFT JOIN department ON department.id = roles.department_id LEFT JOIN employee mgr ON mgr.id = emp.manager_id ORDER BY emp.id"
+    connection.query(createEmployeeTable ,function (err, res) {
             if (err) throw err;
             console.table(res)
-            
+            console.log("\n");
         })
+        begin();
 }
 
 function updateEmployeeRole() {
@@ -181,15 +170,5 @@ function updateEmployeeRole() {
 
 // send out all of our functions to be used in the app
 module.exports = {
-    addDepartment,
-    addRole,
-    addEmployee,
-    addDepartment,
-    viewDepartment,
-    viewRoles,
-    viewEmployees,
-    addRole,
-    addEmployee,
-    updateEmployeeRole,
     begin
 }
