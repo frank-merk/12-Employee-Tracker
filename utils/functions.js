@@ -2,7 +2,6 @@
 const inquirer = require("inquirer");
 const prompts = require('./inquirerPrompts');
 const connection = require('../connection');
-const { listenerCount } = require("../connection");
 
 // switch case to filter user for what they want to do
 function begin() {
@@ -32,7 +31,7 @@ function begin() {
                 break;
             default:
                 console.log("Good bye!");
-                connection.end();
+                
         }
     })
 }
@@ -213,8 +212,9 @@ function addEmployee() {
                 }
             );
             console.log ("Success");
-            connection.end();
             begin();
+            
+            
         })
 }
 

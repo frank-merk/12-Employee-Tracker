@@ -20,5 +20,6 @@ function welcome() {
       }
       console.log(data)
       functions.begin(); 
+      connection.end();
   });
 }
