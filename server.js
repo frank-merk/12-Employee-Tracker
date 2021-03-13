@@ -1,24 +1,25 @@
-const mysql = require('mysql');
+// requiring connections to our mysql database, inquirere for prompts, functions that live in their own doc, figlet for displaying the initial header, and console.table (ctable) for displaying data
+
+const connection = require("./connection")
 const inquirer = require('inquirer');
 const functions = require('./Utils/functions');
 const figlet = require('figlet');
 const cTable = require('console.table');
 
-// create the connection information for the sql database
-const connection = mysql.createConnection({
-  host: 'localhost',
-
-  // Your port; if not 3306
-  port: 3306,
-
-  // Your username
-  user: 'root',
-
-  // Your password
-  password: 'stevens',
-  database: 'employees_db'
+// do the connection to the database
+connection.connect((err) => {
+  if (err) throw err;
+  welcome();
 });
 
-connection.connect((err) => {
-    if (err) throw err;
-})
+function welcome() {
+  figlet('Employee Tracker', function(err, data) {
+      if (err) {
+          console.log('something went wrong...');
+          console.dir(err);
+          return;
+      }
+      console.log(data)
+      begin(); 
+  });
+}
