@@ -63,88 +63,48 @@ function addRole(){
         .prompt([
             {
                 type: 'input',
-                name: 'firstName',
-                message: "Enter the employee's first name.",
+                name: 'newRole',
+                message: "Enter the role you'd like to create.",
 
             },
 
             {
                 type: 'input',
-                name: 'lastName',
-                message: "Enter the employee's last name.",
+                name: 'salary',
+                message: "Enter the salary for this role.",
 
             },
 
             {
                 type: 'list',
-                name: 'role',
-                message: "What is the employees role?",
-                choices: ['Lead Actor', 'Lead Actress', 'Lead Hair and Makeup', 'Junior VFX Designer', 'Head Caterer', 'Best Boy', 'Accountant', 'Legal Analyst']
+                name: 'department',
+                message: "Select a department for the new role.",
+                choices: ["Logistics", "Production", "Post-Production"]
 
-            },
-
-            {
-                type: 'list',
-                name: 'boss',
-                message: "Who is the employee's manager?",
-                choices: ['Joel Coen', 'Rachel Theman', 'Jon Moore', 'none']
-
-            },
+            }
 
         ]).then(function (response) {
-
-            //change role.response to role id
-            let role = response.role;
-            switch(role){
-            case "Lead Actor":
-                role = 2;
-                break;
-            case "Lead Actress":
-                role = 3;
-                break
-            case "Best Boy":
-                role = 4;
-                break;
-            case "Lead Hair and Makeup":
-                role = 5;
-                break;
-            case "Junior VFX Designer":
-                role = 7;
-                break;
-             case "Head Caterer":
-                role = 9;
-                break;
-            case "Accountant":
-                role = 10;
-                break;
-            case "Legal Analyst":
-                role = 11;
-                break;
-           
-            default:
-                console.log("Good bye!");
-            }
-            // setting up manager id
-            let manager = response.boss
-            if (manager == 'none') {
-                manager = null;
-                
-            } else if (manager == 'Joel Coen') {
-                manager = 1;
-            } else if (manager == 'Rachel Theman') {
-                manager = 2;
-            } else {
-                manager = 3;
-            }
-            console.log("Writing employee to Employee Tracker...\n");
+        
+           let department = response.department;
+           switch(department) {
+               case "Production":
+                   department = 1;
+                   break;
+                case "Post-Production":
+                    department = 2;
+                    break;
+                case "Logistics":
+                    department = 3;
+                    break; 
+           }
+            console.log("Writing role to Employee Tracker...\n");
             //insert into employee database in SQL
                connection.query(
-                "INSERT INTO employee SET ?",
+                "INSERT INTO roles SET ?",
                 {
-                  first_name: response.firstName,
-                  last_name: response.lastName,
-                  roles_id: role,
-                  manager_id: manager
+                  title: response.newRole,
+                  salary: response.salary,
+                  department_id: department,
                 },
                 function(err, res) {
                   if(err) throw err;
@@ -292,7 +252,7 @@ function viewEmployees() {
 }
 
 function updateEmployeeRole() {
-    
+    console.log(getDepartments());
 }
 
 // send out all of our functions to be used in the app
